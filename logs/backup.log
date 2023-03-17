@@ -1,0 +1,12 @@
+self=$$;  ( mysqldump --single-transaction --quick --lock-tables=false -u _3d65496952cae3c2 -p********** _3d65496952cae3c2 -h 127.0.0.1 -P 3306   || kill $self )  | /usr/bin/gzip >> ./library.test/private/backups/20230317_000005-library_test-database.sql.gz
+
+Backup Summary for library.test at 2023-03-17 00:00:08.188883
+Config  : ./library.test/private/backups/20230317_000005-library_test-site_config_backup.json 94.0B
+Database: ./library.test/private/backups/20230317_000005-library_test-database.sql.gz         255.1KiB
+Backup for Site library.test has been successfully completed
+self=$$;  ( mysqldump --single-transaction --quick --lock-tables=false -u _3d65496952cae3c2 -p********** _3d65496952cae3c2 -h 127.0.0.1 -P 3306   || kill $self )  | /usr/bin/gzip >> ./library.test/private/backups/20230317_180004-library_test-database.sql.gz
+
+Backup Summary for library.test at 2023-03-17 18:00:05.157484
+Config  : ./library.test/private/backups/20230317_180004-library_test-site_config_backup.json 94.0B
+Database: ./library.test/private/backups/20230317_180004-library_test-database.sql.gz         273.5KiB
+Backup for Site library.test has been successfully completed

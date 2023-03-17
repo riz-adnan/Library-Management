@@ -1,0 +1,399 @@
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1757, in run
+Traceback (most recent call last):
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 611, in connect
+    pubsub.get_message(ignore_subscribe_messages=True, timeout=sleep_time)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1648, in get_message
+    response = self.parse_response(block=False, timeout=timeout)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1498, in parse_response
+    if not block and not self._execute(conn, conn.can_read, timeout=timeout):
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1482, in _execute
+    return conn.retry.call_with_retry(
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/retry.py", line 49, in call_with_retry
+    fail(error)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1484, in <lambda>
+    lambda error: self._disconnect_raise_connect(conn, error),
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1471, in _disconnect_raise_connect
+    raise error
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1483, in <lambda>
+    lambda: command(*args, **kwargs),
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 809, in can_read
+    return self._parser.can_read(timeout)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 411, in can_read
+    return self.read_from_socket(timeout=timeout, raise_on_timeout=False)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 423, in read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+    sock = self.retry.call_with_retry(
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 612, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 677, in _connect
+    raise err
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 665, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/rizzcoder/frap/apps/frappe/frappe/utils/bench_helper.py", line 104, in <module>
+    main()
+  File "/home/rizzcoder/frap/apps/frappe/frappe/utils/bench_helper.py", line 19, in main
+    click.Group(commands=commands)(prog_name="bench")
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1130, in __call__
+    return self.main(*args, **kwargs)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/rizzcoder/frap/apps/frappe/frappe/commands/scheduler.py", line 208, in start_worker
+    start_worker(
+  File "/home/rizzcoder/frap/apps/frappe/frappe/utils/background_jobs.py", line 246, in start_worker
+    worker.work(logging_level=logging_level, burst=burst)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/rq/worker.py", line 644, in work
+    self.register_death()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/rq/worker.py", line 344, in register_death
+    p.execute()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 2072, in execute
+    conn = self.connection_pool.get_connection("MULTI", self.shard_hint)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 1387, in get_connection
+    connection.connect()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 617, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:11002. Connection refused.
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/env/lib/python3.10/site-packages/botocore/httpsession.py:19: DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680
+  from urllib3.contrib.pyopenssl import orig_util_SSLContext as SSLContext
+/home/rizzcoder/frap/env/lib/python3.10/site-packages/botocore/httpsession.py:19: DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680
+  from urllib3.contrib.pyopenssl import orig_util_SSLContext as SSLContext
+/home/rizzcoder/frap/env/lib/python3.10/site-packages/botocore/httpsession.py:19: DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680
+  from urllib3.contrib.pyopenssl import orig_util_SSLContext as SSLContext
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/env/lib/python3.10/site-packages/botocore/httpsession.py:19: DeprecationWarning: 'urllib3.contrib.pyopenssl' module is deprecated and will be removed in a future release of urllib3 2.x. Read more in this issue: https://github.com/urllib3/urllib3/issues/2680
+  from urllib3.contrib.pyopenssl import orig_util_SSLContext as SSLContext
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+/home/rizzcoder/frap/apps/frappe/frappe/utils/pdf.py:7: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+  from distutils.version import LooseVersion
+Traceback (most recent call last):
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 824, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 467, in read_response
+    self.read_from_socket()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 421, in read_from_socket
+    bufflen = self._sock.recv_into(self._buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/rizzcoder/frap/apps/frappe/frappe/utils/bench_helper.py", line 104, in <module>
+    main()
+  File "/home/rizzcoder/frap/apps/frappe/frappe/utils/bench_helper.py", line 19, in main
+    click.Group(commands=commands)(prog_name="bench")
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1130, in __call__
+    return self.main(*args, **kwargs)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/rizzcoder/frap/apps/frappe/frappe/commands/scheduler.py", line 208, in start_worker
+    start_worker(
+  File "/home/rizzcoder/frap/apps/frappe/frappe/utils/background_jobs.py", line 246, in start_worker
+    worker.work(logging_level=logging_level, burst=burst)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/rq/worker.py", line 644, in work
+    self.register_death()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/rq/worker.py", line 344, in register_death
+    p.execute()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 2078, in execute
+    return conn.retry.call_with_retry(
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/retry.py", line 49, in call_with_retry
+    fail(error)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 2080, in <lambda>
+    lambda error: self._disconnect_raise_reset(conn, error),
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 2079, in <lambda>
+    lambda: execute(conn, stack, raise_on_error),
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1933, in _execute_transaction
+    self.parse_response(connection, "_")
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 2018, in parse_response
+    result = Redis.parse_response(self, connection, command_name, **options)
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/client.py", line 1254, in parse_response
+    response = connection.read_response()
+  File "/home/rizzcoder/frap/env/lib/python3.10/site-packages/redis/connection.py", line 830, in read_response
+    raise ConnectionError(f"Error while reading from {hosterr}" f" : {e.args}")
+redis.exceptions.ConnectionError: Error while reading from localhost:11002 : (104, 'Connection reset by peer')

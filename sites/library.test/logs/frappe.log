@@ -1,0 +1,21 @@
+2023-03-17 14:10:12,158 ERROR frappe New Exception collected with id: 2023-03-17 14:10:11.979572-127.0.0.1-d8d
+Site: library.test
+Form Dict: {'doctype': 'Library Member', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2023-03-17 14:10:21,887 ERROR frappe New Exception collected with id: 2023-03-17 14:10:21.839527-127.0.0.1-4f4
+Site: library.test
+Form Dict: {'doctype': 'Library Member', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2023-03-17 14:10:40,875 ERROR frappe New Exception collected with id: 2023-03-17 14:10:40.847183-127.0.0.1-673
+Site: library.test
+Form Dict: {'doctype': 'Library Member', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2023-03-17 14:11:50,953 ERROR frappe New Exception collected with id: 2023-03-17 14:11:50.838376-127.0.0.1-64e
+Site: library.test
+Form Dict: {'doctype': 'Library Member', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2023-03-17 14:14:39,737 ERROR frappe New Exception collected with id: 2023-03-17 14:14:39.501546-127.0.0.1-2af
+Site: library.test
+Form Dict: {'doctype': 'Library Member', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2023-03-17 14:16:52,321 ERROR frappe New Exception collected with id: 2023-03-17 14:16:52.243924-127.0.0.1-858
+Site: library.test
+Form Dict: {'doctype': 'Library Member', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
+2023-03-17 14:19:16,454 ERROR frappe New Exception collected with id: 2023-03-17 14:19:16.321011-127.0.0.1-dc2
+Site: library.test
+Form Dict: {'doctype': 'Library Member', 'with_parent': '1', 'cached_timestamp': '', 'cmd': 'frappe.desk.form.load.getdoctype'}
